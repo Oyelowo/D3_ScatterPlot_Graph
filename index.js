@@ -18,6 +18,14 @@ svg = d3
     .attr("width", svgWidth)
     .style("background", "#eaeaea")
 
+let tooltip = d3
+    .select("#graphArea")
+    .append('div')
+    .attr("id", "tooltip")
+    .style("opacity", 0)
+// .style("position", "absolute")
+// .style("z-index", "1000");
+
 document.addEventListener("DOMContentLoaded", async () => {
     const dataUrl = "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cycli" +
         "st-data.json";
@@ -81,8 +89,26 @@ document.addEventListener("DOMContentLoaded", async () => {
         .append("circle")
         .attr("cx", (d) => xAxisScale(d.Year))
         .attr("cy", (d) => yAxisScale(d.modifiedTime))
-        .attr("r", "5")
+        .attr("r", "6")
         .attr("fill", (d) => d.Doping ? "red" : "green")
         .attr("transform", `translate(${margin.left},${margin.top})`)
+        .on("mouseover", function (d, i) {
+            tooltip.transition()
+                .duration(50)
+                .style("opacity", "0.8")
+
+            tooltip
+                .style("background", "lightblue")
+                .style("left", `${xAxisScale(d.Year) + margin.left}px`)
+                .style("top", `${yAxisScale(d.modifiedTime)}px`);
+
+            tooltip.html(`${d.Name} ${d.Nationality} <br> Year:${d.Year} Time: ${d.Time} <br><br> Allegation: ${d.Doping}`)
+        })
+        .on("mouseout", function (d) {
+            tooltip
+                .transition()
+                .duration(200)
+                .style("opacity", 0)
+        })
 
 })

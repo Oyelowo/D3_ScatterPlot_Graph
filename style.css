@@ -1,4 +1,22 @@
-#graphArea{
+#graphArea {
     margin: auto;
     width: 900px;
+}
+
+#graphContainer {
+    position: relative;
+}
+
+#graphArea {
+    position: absolute;
+}
+
+#tooltip {
+    position: absolute;
+    z-index: 1000;
+    padding: 15px;
+}
+
+circle:hover {
+    cursor: pointer;
 }
