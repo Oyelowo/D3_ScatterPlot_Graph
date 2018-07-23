@@ -25,17 +25,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     let dataset = await data.json();
     // console.log(dataset);
 
-    let modifiedTime = dataset.map(el => {
+    dataset.map(el => {
         timeMinutesSecondsArray = el
             .Time
             .split(":");
         timeMinute = timeMinutesSecondsArray[0];
         timeSecond = timeMinutesSecondsArray[1];
         dateTime = new Date(`01/01/1970 00:${timeMinute}:${timeSecond}`)
-        return dateTime;
+        el.modifiedTime = dateTime;
     })
 
-    let timeExtent = d3.extent(modifiedTime, (d) => d);
+    let timeExtent = d3.extent(dataset, (d) => d.modifiedTime);
     let yAxisScale = d3
         .scaleTime()
         .domain(timeExtent)
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let xAxisScale = d3
         .scaleTime()
-        .domain([dataYearMinimum-1, dataYearMaximum+2])
+        .domain([dataYearMinimum - 1, dataYearMaximum + 2])
         .range([0, width]);
 
     let yearFormat = d3.format("d");
@@ -74,5 +74,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         .call(xAxis)
         .attr("id", "x-axis")
         .attr("transform", `translate(${margin.left}, ${xAxisTranslateY})`)
+
+    let ScatterPlot = svg.selectAll("circle")
+        .data(dataset)
+        .enter()
+        .append("circle")
+        .attr("cx", (d) => xAxisScale(d.Year))
+        .attr("cy", (d) => yAxisScale(d.modifiedTime))
+        .attr("r", "5")
+        .attr("fill", (d) => d.Doping ? "red" : "green")
+        .attr("transform", `translate(${margin.left},${margin.top})`)
 
 })
