@@ -33,10 +33,10 @@ const margin = {
 
         dataset.map(el => {
             let [timeMinute,timeSecond] = el.Time.split(":");
-            el.modifiedTime = new Date(`01/01/1970 00:${timeMinute}:${timeSecond}`);
+            el.modifiedTimeWithDate = new Date(`01/01/1970 00:${timeMinute}:${timeSecond}`);
         })
 
-        let timeExtent = d3.extent(dataset, (d) => d.modifiedTime);
+        let timeExtent = d3.extent(dataset, (d) => d.modifiedTimeWithDate);
         let yAxisScale = d3
             .scaleTime()
             .domain(timeExtent)
@@ -85,7 +85,7 @@ const margin = {
             .enter()
             .append("circle")
             .attr("cx", (d) => xAxisScale(d.Year))
-            .attr("cy", (d) => yAxisScale(d.modifiedTime))
+            .attr("cy", (d) => yAxisScale(d.modifiedTimeWithDate))
             .attr("r", "6")
             .attr("fill", (d) => d.Doping
                 ? "red"
@@ -100,7 +100,7 @@ const margin = {
                 tooltip
                     .style("background", "lightblue")
                     .style("left", `${xAxisScale(d.Year) + margin.left}px`)
-                    .style("top", `${yAxisScale(d.modifiedTime)}px`);
+                    .style("top", `${yAxisScale(d.modifiedTimeWithDate)}px`);
 
                 tooltip.html(`${d.Name} ${d.Nationality} <br> Year:${d.Year} Time: ${d.Time} <br><br> Allegation: ${d.Doping}`)
             })
