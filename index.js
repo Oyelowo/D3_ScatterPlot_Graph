@@ -11,7 +11,7 @@ const svgHeight = 400,
 const height = svgHeight - margin.top - margin.bottom,
     width = svgWidth - margin.left - margin.right;
 
-const dopingColor = "red",
+const dopingColor = "#db5e0b",
     noDopingColor = "green";
 
 svg = d3
