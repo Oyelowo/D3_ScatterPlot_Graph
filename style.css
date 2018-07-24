@@ -13,6 +13,8 @@ body {
 
 text, #title, footer, line {
     text-shadow: var(--myShadow);
+    fill: #3d2626;
+    color: #3b0f0f;
 }
 
 #title {
