@@ -7,6 +7,9 @@ body {
 }
 
 #title {
+    width: 60%;
+   margin: auto;
+    font-size: 1rem;
     text-shadow: var(--myShadow);
     text-align: center;
     position: relative;
@@ -17,8 +20,10 @@ body {
 
 #graphContainer {
     width: 900px;
+    padding: 30px;
     position: relative;
     margin: auto;
+    box-shadow: var(--myShadow);
 }
 
 #tooltip {
