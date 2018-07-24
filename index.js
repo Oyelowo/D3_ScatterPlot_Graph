@@ -107,6 +107,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         .data(dataset)
         .enter()
         .append("circle")
+        .attr("class", "dot")
+        .attr("data-xvalue", d => d.Year)
+        .attr("data-yvalue", d => d.modifiedTimeWithDate)
         .attr("cx", (d) => xAxisScale(d.Year))
         .attr("cy", (d) => yAxisScale(d.modifiedTimeWithDate))
         .attr("r", "6")
@@ -123,6 +126,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 .style("opacity", "0.8")
 
             tooltip
+                .attr("data-year", d.Year)
                 .style("background", "lightblue")
                 .style("left", `${xAxisScale(d.Year) + margin.left}px`)
                 .style("top", `${yAxisScale(d.modifiedTimeWithDate)}px`);
