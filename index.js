@@ -5,7 +5,7 @@ const margin = {
     left: 80
 }
 
-const svgHeight = 400,
+const svgHeight = 430,
     svgWidth = 900;
 
 const height = svgHeight - margin.top - margin.bottom,

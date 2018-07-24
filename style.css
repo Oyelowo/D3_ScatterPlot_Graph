@@ -6,11 +6,19 @@ body {
     background: #eaeaea;
 }
 
+#y-axis,
+#x-axis {
+    font-size: 0.8rem;
+}
+
+text, #title, footer, line {
+    text-shadow: var(--myShadow);
+}
+
 #title {
     width: 60%;
-   margin: auto;
+    margin: auto;
     font-size: 1rem;
-    text-shadow: var(--myShadow);
     text-align: center;
     position: relative;
     top: 4%;
@@ -42,7 +50,6 @@ svg circle:hover {
 
 footer {
     text-align: center;
-    text-shadow: var(--myShadow);
     font-size: 1.3rem;
 }
 
